@@ -79,6 +79,20 @@ set showcmd
 if exists("&relativenumber")
 	set relativenumber
 	au BufReadPost * set relativenumber
+	autocmd InsertEnter * :set number
+	autocmd InsertLeave * :set relativenumber
+" Make a 3-way toggle between no line numbers, absolute, and relative:
+	function! NumberToggle()
+		if(&rnu == 0 && &nu == 0)
+			set nu
+		elseif(&nu == 1)
+			set nonu
+			set rnu
+		else
+			set nornu
+		endif
+	endfunc
+	nnoremap <C-n> :call NumberToggle()<cr>
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
