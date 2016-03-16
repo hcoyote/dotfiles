@@ -156,4 +156,4 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias reload="exec $SHELL -l"
 
 # docker env setup
-alias dockerup="eval $(docker-machine env default)"
+alias dockerup="eval \$(docker-machine env default)"
