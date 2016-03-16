@@ -46,8 +46,13 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
 alias grep='grep --color=auto'
+alias gerp='grep'
+alias grpe='grep'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias egerp='egrep'
+alias egrpe='egrep'
+
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
