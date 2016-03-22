@@ -123,6 +123,7 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
+" via http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
 set viminfo='10,\"100,:20,%,n~/.viminfo
 function! ResCur()
   if line("'\"") <= line("$")
