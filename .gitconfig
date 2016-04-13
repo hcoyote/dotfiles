@@ -178,6 +178,7 @@
 [user]
 	name = Travis Campbell
 	email = (none)
+    useConfigOnly = true
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean %f
