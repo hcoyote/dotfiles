@@ -244,3 +244,38 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# launch a terraforming docker image to investigate aws things
+function terraforming() {
+    f=$(dockermachinestart)
+
+    dockerup
+
+    if [[ ${f} -eq 0 ]] ; then
+        docker run \
+            --rm \
+            --name terraforming \
+            -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+            -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+            -e AWS_REGION=$AWS_REGION \
+            quay.io/dtan4/terraforming:latest \
+            terraforming $*
+    fi
+}
+
+function dockermachinestart() {
+    status=$(docker-machine status default 2>/dev/null)
+    case ${status} in
+        Stopped)
+            docker-machine start default 2>/dev/null
+            ;;
+        Running)
+            ;;
+        *)  echo "Unknown status $status for dockermachine state."
+            exit 1
+            ;;
+    esac
+
+    eval $(docker-machine env default)
+    exit 0
+}
